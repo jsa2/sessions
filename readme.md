@@ -5,7 +5,7 @@
 
 You can use the following setup snippets to replicate the demo environment used in the demo at *CNCF - Helsinki in September: Kubernetes and cloud native security*
 
-- Provides also a way to setup Grafana and Prometheus for AKS-add-on.(These are not installed by default when using the add-on)
+- Provides also a way to setup Grafana and Prometheus for AKS-add-on, as these are not installed by default when using the add-on
 
 --- 
 **References** [ from MS Docs](https://docs.microsoft.com/en-us/azure/aks/open-service-mesh-about#capabilities-and-features) 
