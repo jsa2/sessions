@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udpsrv
+  namespace: ngi
+  annotations:
+   container.apparmor.security.beta.kubernetes.io/udpsrv: "localhost/cri-containerd.apparmor.d"
+spec:
+  selector:
+    matchLabels:
+      app: udpsrv
+  template:
+    metadata:
+      labels:
+        app: udpsrv
+    spec:
+      containers:
+      - name: udpsrv
+        image: honeypotter.azurecr.io/udpserver:latest
+        ports:
+        - containerPort: 6000
+          protocol: UDP
+      

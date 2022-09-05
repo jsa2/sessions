@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ginxnonmesh
+  namespace: ngi2
+  annotations:
+   container.apparmor.security.beta.kubernetes.io/ginxnonmesh: "localhost/cri-containerd.apparmor.d"
+spec:
+  selector:
+    matchLabels:
+      app: ginxnonmesh
+  template:
+    metadata:
+      labels:
+        app: ginxnonmesh
+    spec:
+      containers:
+      - name: ginxnonmesh
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+      

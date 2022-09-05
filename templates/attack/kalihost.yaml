@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kalihost
+  labels:
+    app: kalihost
+spec:
+  containers:
+  - name: kali
+    image: kalilinux/kali-rolling
+    command:
+        - "/bin/sleep"
+        - "10000"
+  hostNetwork: true
+  dnsPolicy: Default

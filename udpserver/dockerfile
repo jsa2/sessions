@@ -1,0 +1,13 @@
+#FROM node:8.9-alpine
+FROM node:14.15.5-alpine
+#FROM node:10.20-stretch
+ENV NODE_ENV production
+#WORKDIR /usr/src/app/
+#COPY ["package*.json","./"]
+COPY ["package.json", "package.json"]
+RUN npm i
+COPY ["./","./"]
+EXPOSE 6000:6000/udp
+#CMD [ "node","authsampl.js"]
+CMD [ "node","app.js"]
+#dck add

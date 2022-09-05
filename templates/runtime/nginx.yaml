@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx2
+  namespace: ngi
+  annotations:
+   container.apparmor.security.beta.kubernetes.io/nginx2: "localhost/cri-containerd.apparmor.d"
+spec:
+  selector:
+    matchLabels:
+      app: nginx2
+  template:
+    metadata:
+      labels:
+        app: nginx2
+    spec:
+      containers:
+      - name: nginx2
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+      
