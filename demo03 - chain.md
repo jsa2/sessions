@@ -10,10 +10,9 @@ Init clean EAST for the demos
 
 az account clear
 
-fld=east-$RANDOM
-git clone https://github.com/jsa2/east $fld
-cd $fld
-rm .git -rf
+folder=BHEU$RANDOM
+git clone https://github.com/jsa2/EAST -b preview $folder
+cd $folder
 npm install
 
 ```

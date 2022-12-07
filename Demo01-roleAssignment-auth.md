@@ -2,6 +2,12 @@
 
 ## Auditing privileged users 
 
+
+folder=BHEU$RANDOM
+git clone https://github.com/jsa2/EAST -b preview $folder
+cd $folder
+npm install
+
 ### Perform
 
 1. Access [keys](https://portal.azure.com/#@thx138.onmicrosoft.com/resource/subscriptions/3539c2a2-cd25-48c6-b295-14e59334ef1c/resourceGroups/queryStorage-2637/providers/Microsoft.Storage/storageAccounts/storagezktkqnknnv/keys) as aaron.butler@m.dewi.red
