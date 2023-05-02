@@ -33,7 +33,7 @@ at3=$(ssh -i tempkeys/tempkey azureuser@$ip "curl -s 'http://169.254.169.254/met
 node decodeTokens.js $at3
 
 
-curl -s -X POST -H "Content-type: application/json" -H "Authorization: Bearer $at3" -d '{"displayName": "Display name 'eastDemo-$RANDOM'"}' https://graph.microsoft.com/v1.0/applications | jq .
+curl -s -X POST -H "Content-type: application/json" -H "Authorization: Bearer $at3" -d '{"displayName": "'eastDemo-$RANDOM'"}' https://graph.microsoft.com/v1.0/applications | jq .
 
 
 
