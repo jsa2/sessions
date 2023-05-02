@@ -46,10 +46,12 @@ vmOut=$(az vm create --resource-group $vmRg \
 --ssh-key-values tempkeys/tempkey.pub
 )
 
+echo $vmOut
 # Enable Managed Identity and required permissions for key vault and monitor
 identity=$(az vm identity assign -g  $vmRg  -n $vm --role "Storage Account Contributor" --scope $scope -o tsv --query "systemAssignedIdentity")
 
-
+# Reboot to force token renewal
+# ssh -i tempkeys/tempkey azureuser@$ip 'sudo reboot now -f'
 # Metadata about the VM and identity
 
 ip=$(echo $vmOut | jq -r '.publicIpAddress');echo $ip
