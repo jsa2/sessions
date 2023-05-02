@@ -40,11 +40,16 @@ curl -s -X POST -H "Content-type: application/json" -H "Authorization: Bearer $a
 ```
 # Review logs
 ```sql
+let aadAuditLog = AuditLogs
+| mv-apply  InitiatedBy to typeof(dynamic ) on (
+where isnotempty( InitiatedBy.app)
+| extend app =parse_json(InitiatedBy.app).displayName
+);
 // map MI and SPN to non-identified Azure Ranges
 let s = union AADServicePrincipalSignInLogs, AADManagedIdentitySignInLogs
 | distinct AppId, ServicePrincipalName;
 let massList = s | summarize make_list(AppId);
-let src = union AzureDiagnostics, AzureActivity
+let src = union AzureDiagnostics, AzureActivity, aadAuditLog 
 | extend mass = pack_all(true)
 | mv-apply appId = toscalar(massList) to typeof(string) on (where mass contains appId  )
 | extend combOp = iff(isempty( OperationNameValue), OperationName, OperationNameValue)
@@ -74,6 +79,8 @@ let noMatch = src
 | join kind=leftanti matched on $left.ipByAsIdentifiedByAzure == $right.ipByAsIdentifiedByAzure
 | extend matchFound = false;
 union noMatch, matched
+| extend ipByAsIdentifiedByAzure = iff(isempty(ipByAsIdentifiedByAzure),'IP not in expected field/IP not recorded',ipByAsIdentifiedByAzure) 
+
 
 
 ```
