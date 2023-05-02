@@ -67,7 +67,12 @@ az rest --method post --url "https://graph.microsoft.com/v1.0/servicePrincipals/
 --body "{\"principalId\": \"$identity\",\"resourceId\": \"$graphspn\",\"appRoleId\": \"7ab1d382-f21e-4acd-a863-ba3e13f7da61\"}" 
 
 
-# Assign 
+# Assign AAD Role to the SPN
+az rest --method post --url "https://graph.microsoft.com/beta/roleManagement/directory/roleAssignments" --resource "https://graph.microsoft.com" \
+--body "{\"principalId\": \"$identity\",\"roleDefinitionId\": \"cf1c38e5-3621-4004-a7cb-879624dced7c\", \"directoryScopeId\": \"\/\" }" 
+
+
+
 
 
 secretvalue=$(openssl rand -base64 21)
@@ -85,8 +90,6 @@ ssh -i tempkeys/tempkey azureuser@$ip "at=\$(curl -s 'http://169.254.169.254/met
 # List Storage Account Keys
 
 ssh -i tempkeys/tempkey azureuser@$ip "at=\$(curl -s 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fmanagement.azure.com' -H Metadata:true  | jq .access_token  | sed 's/\"//g'); curl -s -d "{}" '$storagePath' -H \"Authorization: Bearer \$at\" | jq ."
-
-# List Conditional Access Policy
 
 
 # audit with east

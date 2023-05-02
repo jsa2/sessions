@@ -18,6 +18,22 @@ node decodeTokens.js $at2
 
 curl -s -d "{}" $storagePath  -H "Authorization: Bearer $at2" | jq .
 
+# Try to storageAccount without permissions
+
+curl -s -d "{}" "https://management.azure.com/subscriptions/3539c2a2-cd25-48c6-b295-14e59334ef1c/resourceGroups/rg-faug/providers/Microsoft.Storage/storageAccounts/faugspoof/listKeys?api-version=2022-09-01" -H "Authorization: Bearer $at2" | jq .
+
+# Try to get Azure Data Factory DataPlane Access Tokens
+
+curl -s -d "{}" "https://management.azure.com/subscriptions/3539c2a2-cd25-48c6-b295-14e59334ef1c/resourcegroups/rg-adf/providers/Microsoft.DataFactory/factories/adftest334/getDataPlaneAccess?api-version=2018-06-01" -H "Authorization: Bearer $at2" | jq .
+
+# Create new SPN as the MI
+
+at3=$(ssh -i tempkeys/tempkey azureuser@$ip "curl -s 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https://graph.microsoft.com' -H Metadata:true" | jq .access_token | sed 's/\"//g') 
+
+node decodeTokens.js $at3
+
+
+curl -s -X POST -H "Content-type: application/json" -H "Authorization: Bearer $at3" -d '{"displayName": "Display name 'eastDemo-$RANDOM'"}' https://graph.microsoft.com/v1.0/applications | jq .
 
 
 
