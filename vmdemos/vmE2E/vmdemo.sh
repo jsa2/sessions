@@ -97,7 +97,7 @@ ssh -i tempkeys/tempkey azureuser@$ip "at=\$(curl -s 'http://169.254.169.254/met
 # audit with east
 
 fld=east-$RANDOM
-git clone https://github.com/jsa2/east $fld -b preview
+git clone https://github.com/jsa2/east $fld 
 
 ##  review composite_AzureKeyVault_ReviewCallers VM_ManagedIdentity
 echo "node ./plugins/main.js --batch=10 --nativescope=true --namespace=resourceGroups/rg-honeyP,$vmRg --composites --clearTokens --SkipStorageThrottling"
