@@ -83,4 +83,10 @@ union noMatch, matched
 
 
 
+
 ```
+
+
+# finally
+
+joosua@g16-dev:~/bheast$ node ./plugins/main.js --batch=10 --nativescope=true --namespace=resourceGroups/rg-honeyP,rg-eastdemovm9449 --composites --clearTokens --SkipStorageThrottling --scanAuditLogs=20 --composites --clearTokens --SkipStorageThrottling --checkAad; node filterForUg.js 

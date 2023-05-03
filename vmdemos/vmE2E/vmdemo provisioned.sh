@@ -46,6 +46,10 @@ git clone https://github.com/jsa2/east $fld -b preview
 echo "node ./plugins/main.js --batch=10 --nativescope=true --namespace=resourceGroups/rg-honeyP,$vmRg --composites --clearTokens --SkipStorageThrottling"
 
 
+# access bheast folder at home
+echo "node ./plugins/main.js --batch=10 --nativescope=true --namespace=resourceGroups/rg-honeyP,rg-eastdemovm9449 --composites --clearTokens --SkipStorageThrottling --scanAuditLogs=20 --composites --clearTokens --SkipStorageThrottling --checkAad"
+
+
 #WSL or other Linux distro
 G=$(az group list --tag 'svc=honeypot' --query "[].{name:name}" -o tsv) 
 
