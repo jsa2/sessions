@@ -69,6 +69,9 @@ echo $vmOut
 # Enable Managed Identity and required permissions for key vault and monitor
 identity=$(az vm identity assign -g  $vmRg  -n $vm --role "Storage Account Contributor" --scope $scope -o tsv --query "systemAssignedIdentity")
 
+
+az vm identity assign -g  $vmRg  -n $vm --role "Storage Blob Data Contributor" --scope $scope -o tsv --query "systemAssignedIdentity"
+
 # Reboot to force token renewal
 # ssh -i tempkeys/tempkey azureuser@$ip 'sudo reboot now -f'
 # Metadata about the VM and identity
@@ -111,6 +114,11 @@ ssh -i tempkeys/tempkey azureuser@$ip "at=\$(curl -s 'http://169.254.169.254/met
 # List Storage Account Keys
 
 ssh -i tempkeys/tempkey azureuser@$ip "at=\$(curl -s 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fmanagement.azure.com' -H Metadata:true  | jq .access_token  | sed 's/\"//g'); curl -s -d "{}" '$storagePath' -H \"Authorization: Bearer \$at\" | jq ."
+
+
+# write to storage
+
+ssh -i tempkeys/tempkey azureuser@$ip "curl -o- https://raw.githubusercontent.com/jsa2/sessions/Azure_security_ug/BlobWriter.sh | bash -s -- \"$storageAcc\""
 
 
 # audit with east
