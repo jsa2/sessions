@@ -1,5 +1,5 @@
 
-git clone https://github.com/jsa2/sessions -b ug vmdemos
+git clone https://github.com/jsa2/sessions -b Azure_security_ug vmdemos
 rm east* -rf 
 
 # Generate RSA key pair
@@ -29,6 +29,11 @@ az group create -n $vmRg \
 az keyvault create -n $kvName -g $rg -o tsv --query "id" --no-wait
 
 wsid=$(az monitor log-analytics workspace create --location $location -g $rg  -n laws${RAN} -o tsv --query "id")
+
+
+# for existing  use
+# wsid="/subscriptions/3539c2a2-cd25-48c6-b295-14e59334ef1c/resourcegroups/rg-laws/providers/microsoft.operationalinsights/workspaces/hublaws"
+
 
 kvId=$(az keyvault show -n $kvName -g $rg -o tsv --query "id")
 
