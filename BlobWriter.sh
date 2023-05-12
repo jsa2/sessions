@@ -24,7 +24,7 @@ nvm install 16
 nvm alias default 16
 
 # Clone the repository
-git clone https://github.com/jsa2/sessions/ --branch Azure_security_ug3
+git clone https://github.com/jsa2/sessions/ --branch Azure_security_ug
 cd sessions
 
 # Install npm dependencies

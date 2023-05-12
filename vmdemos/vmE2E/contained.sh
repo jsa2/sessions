@@ -2,7 +2,8 @@
 git clone https://github.com/jsa2/sessions -b Azure_security_ug vmdemos
 rm east* -rf 
 
-# Generate RSA key pair
+# Generate RSA key pair;
+# rm tempkeys -rf
 mkdir tempkeys
 
 ssh-keygen -t rsa -b 4096 -C "tempkey" -f "tempkeys/tempkey" -N ""
@@ -96,7 +97,6 @@ vmOut=$(az vm create --resource-group $vmRg \
 echo $vmOut
 # Enable Managed Identity and required permissions for key vault and monitor
 identity=$(az vm identity assign -g  $vmRg  -n $vm --role "Storage Account Contributor" --scope $scope -o tsv --query "systemAssignedIdentity")
-
 
 az vm identity assign -g  $vmRg  -n $vm --role "Storage Blob Data Contributor" --scope $scope -o tsv --query "systemAssignedIdentity"
 
