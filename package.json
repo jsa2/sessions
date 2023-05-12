@@ -1,14 +1,16 @@
 {
-  "name": "demo",
-  "version": "1.0.0",
+  "name": "sd",
+  "version": "0.1.0",
   "description": "",
-  "main": "decodeTokens.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "jsonwebtoken": "^9.0.0"
+    "@azure/identity": "^3.1.4",
+    "@azure/storage-blob": "^12.14.0",
+    "axios": "^1.4.0",
+    "jsonwebtoken": "^9",
+    "yargs": "^17.7.2"
   }
 }
