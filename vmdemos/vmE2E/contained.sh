@@ -2,14 +2,12 @@
 git clone https://github.com/jsa2/sessions -b ug vmdemos
 rm east* -rf 
 
-
 # Generate RSA key pair
 mkdir tempkeys
 
 ssh-keygen -t rsa -b 4096 -C "tempkey" -f "tempkeys/tempkey" -N ""
 chmod 700 tempkeys
 chmod 600 tempkeys/*
-
 
 az account set --subscription "microsoft azure sponsorship"
 

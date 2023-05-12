@@ -59,7 +59,7 @@ let src = union AzureDiagnostics, AzureActivity, aadAuditLog
 | distinct  ServicePrincipalName,appId, Type, combOp, combCategory, ipByAsIdentifiedByAzure
 | summarize make_list(pack_all(true));
 let azIp =externaldata(changeNumber: string, cloud: string, values: dynamic)
-["https://download.microsoft.com/download/7/1/D/71D86715-5596-4529-9B13-DA13A5DE5B63/ServiceTags_Public_20230424.json"]
+["https://download.microsoft.com/download/7/1/D/71D86715-5596-4529-9B13-DA13A5DE5B63/ServiceTags_Public_20230508.json"]
 with(format='multijson')
 | mv-expand values
 | project  aId =values.id, prefix =values.properties.addressPrefixes
