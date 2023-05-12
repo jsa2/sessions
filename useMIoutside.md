@@ -7,7 +7,7 @@ at=$(ssh -i tempkeys/tempkey azureuser@$ip "curl -s 'http://169.254.169.254/meta
 
 node decodeTokens.js $at
 
-curl -s 'https://eastdemokv.vault.azure.net/secrets/vmsecret/?api-version=2016-10-01' -H "Authorization: Bearer $at" | jq .
+curl -s "https://$kvName.vault.azure.net/secrets/vmsecret/?api-version=2016-10-01" -H "Authorization: Bearer $at" | jq .
 
 
 #Storage
