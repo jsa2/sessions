@@ -51,8 +51,36 @@ az network nsg rule create --name "allow-my-ip" --nsg-name tempNSG --resource-gr
 
 
 storage=$(az storage account create -n $storageAcc  -g $vmRg --kind storageV2 -l $location -t Account --sku Standard_LRS)
+
+storageId=$( echo $storage | jq -r '.id' )
 storagePath=https://management.azure.com$( echo $storage | jq -r '.id' )"/listKeys?api-version=2022-09-01"
 
+az monitor diagnostic-settings create --resource $storageId/blobServices/default --name "BlobLogs" --logs '[
+  {
+    "category": "StorageRead",
+    "enabled": true,
+    "retentionPolicy": {
+      "days": 0,
+      "enabled": false
+    }
+  },
+  {
+    "category": "StorageWrite",
+    "enabled": true,
+    "retentionPolicy": {
+      "days": 0,
+      "enabled": false
+    }
+  },
+  {
+    "category": "StorageDelete",
+    "enabled": true,
+    "retentionPolicy": {
+      "days": 0,
+      "enabled": false
+    }
+  }
+]'  --workspace $wsid
 
 vmOut=$(az vm create --resource-group $vmRg \
 --name $vm \
