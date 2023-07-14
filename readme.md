@@ -2,8 +2,9 @@
 
 This demo will contain standalone auditing and enhanced auditing with sign-in and audit data. The session is co-operation between Azure Security UG organizers and yours truly
 
-## Multi-tenant applications
+## AAD Apps
 - Permissions in general
+- Distinction on SPN and APP
 - Assignments
 - OAuth2 Apps
 - App ambivalency (Protocols)
