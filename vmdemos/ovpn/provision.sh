@@ -3,7 +3,7 @@
 rm east* -rf 
 
 az vm image list --publisher OpenVPN --all
-
+az vm image terms accept --urn openvpn:openvpnas:openvpnas:2.11.03 
 az account set --subscription "microsoft azure sponsorship"
 rg="rg-honeyP"
 vm="ovpnDemo$RANDOM"
