@@ -7,7 +7,7 @@ az vm image terms accept --urn openvpn:openvpnas:openvpnas:2.11.03
 az account set --subscription "microsoft azure sponsorship"
 rg="rg-honeyP"
 vm="ovpnDemo$RANDOM"
-location=westeurope
+location=swedencentral
 kvName=eastdemokv
 pw=$(cat /proc/sys/kernel/random/uuid)"\+1\!Sda"
 MY_IP_ADDRESS=$(curl -s ifconfig.me)/32
