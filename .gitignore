@@ -1,0 +1,7 @@
+*.txt
+*east*
+/tempkeys/* 
+/**/tempkeys/*
+node_modules
+launch
+.vscode
