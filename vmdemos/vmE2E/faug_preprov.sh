@@ -1,10 +1,10 @@
-# Set the Azure subscription context to use "microsoft azure sponsorship"
+# Set the Azure Subscription context to use "microsoft azure sponsorship" 
 az account set --subscription "microsoft azure sponsorship"
 
-# Define the path to your JSON file containing the pre-provisioning information
+# Define the path to your JSON file containing the pre-provisioning information 
 jsonFilePath="vmdemos/vmE2E/preprov.json"
 
-vulnerableWebApp=https://faugspoof.azurewebsites.net/accessToken  
+vulnerableWebApp=https://faugnotexists.azurewebsites.net/accessToken  
 
 # Use jq to parse the JSON file and extract the VM name, location, and storage account name and ID
 vm=$(jq -r '.[] | select(.type == "Microsoft.Compute/virtualMachines") | .name' "$jsonFilePath")

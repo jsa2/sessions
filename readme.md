@@ -1,6 +1,8 @@
 # Raw Session notes from 'FAUG goes Full Day Learning @ 29.2.2024'
 
-These are just notes from the session. Running the same demos in your environment requires modifications and filling some gaps, so the scripts mostly serve as insipiration and starting point
+These are just notes from the session. Running the same demos in your environment requires modifications and filling some gaps, so the scripts mostly serve as insipiration and starting point to exploration of these services
+
+https://www.meetup.com/finland-azure-user-group/ 
 
 ## Presentation
 
@@ -14,11 +16,11 @@ These are just notes from the session. Running the same demos in your environmen
 1. Actor in the middle attacks provisioning script [AITMprovision.sh](/vmdemos/vmE2E/AITMprovision.sh)
  - This one includes the script to provision AITM tooling from ZIP package. Currently the flavour of the AITM tooling I am using is not available to public, but many other tools are available publicly such as https://github.com/kgretzky/evilginx2 
 2. [Entra ID App Auditing](https://github.com/jsa2/AADAppAudit/blob/main/readme.md)
-Provisions a VM that access the following sources
+
+-  Provisions VM and tries various things 
 - Audit static permissions  [Entra ID App Auditing](https://github.com/jsa2/AADAppAudit/blob/main/readme.md)
-- To use the demo you need to have existing log analytics workspace  example.``laws=hublaws`` , and at least following log sources enabled
-- Run live audit in the workspace [appAudit.kql](./appAudit.kql)
- 
+- To use the demo you need to have existing log analytics workspace  example.``laws=hublaws``  and log tables as per [appAudit.kql](./appAudit.kql) configured
+
 
 ```mermaid
 graph TD
